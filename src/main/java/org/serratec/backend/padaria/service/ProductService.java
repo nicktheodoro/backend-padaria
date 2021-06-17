@@ -23,11 +23,8 @@ public class ProductService {
 
 	public ProductEntity update(Long id, ProductEntity product) {
 		ProductEntity entity = productRepository.getById(id);
-
-		product.setNome(product.getNome());
-		product.setQuantidade(product.getQuantidade());
-		product.setValor(product.getValor());
-		product.setUrlImagem(product.getUrlImagem());
+		entity = product;
+		entity.setId(id);
 
 		return productRepository.save(entity);
 	}
