@@ -1,6 +1,7 @@
 package org.serratec.backend.padaria.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.serratec.backend.padaria.models.ProductEntity;
 import org.serratec.backend.padaria.repository.ProductRepository;
@@ -17,6 +18,10 @@ public class ProductService {
 		return this.productRepository.findAll();
 	}
 
+	public Optional<ProductEntity> getById(Long id) {
+		return productRepository.findById(id);
+	}
+
 	public ProductEntity create(ProductEntity product) {
 		return this.productRepository.save(product);
 	}
@@ -24,9 +29,8 @@ public class ProductService {
 	public ProductEntity update(Long id, ProductEntity product) {
 		ProductEntity entity = productRepository.getById(id);
 		entity = product;
-		entity.setId(id);
-
-		return productRepository.save(entity);
+		
+		return this.productRepository.save(entity);
 	}
 
 	public void delete(Long id) {
